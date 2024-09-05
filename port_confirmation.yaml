@@ -1,0 +1,14 @@
+---
+- hosts: meraki_servers
+  gather_facts: false
+  tasks:
+    - name: Get all devices _switch _ports
+      cisco.meraki.devices_switch_ports_info:
+        meraki_api_key: "populate_with_key"
+        serial: "switch_sn"
+        portId: "1"
+      register: result
+
+    - name: Show result
+      ansible.builtin.debug:
+        msg: "{{ result }}"
